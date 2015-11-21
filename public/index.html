@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="bower_components/semantic/dist/semantic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <style>
+      .container {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+    </style>
+  </head>
+  <body ng-app="app" class="black">
+
+    <div class="ui menu inverted">
+
+      <span class="item title">
+        Golang SE PoC
+      </span>
+
+      <a class="item" href="#/people">
+        People
+      </a>
+
+      <div class="right menu">
+        <div class="item">
+
+          <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container" ng-view></div>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="javascript/services/people.js"></script>
+    <script src="javascript/controllers/people.js"></script>
+    <script src="javascript/app.js"></script>
+  </body>
+</html>

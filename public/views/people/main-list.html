@@ -1,0 +1,34 @@
+<h3>People</h3>
+<table class="ui celled table inverted">
+  <thead>
+
+    <tr>
+      <th colspan="2">
+        <a href="#/people/new" class="ui button right floated">Create new</a>
+      </th>
+    </tr>
+
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr ng-repeat="person in people">
+
+      <td>
+        {{person.firstname}} {{person.lastname}}
+      </td>
+
+      <td>
+        {{person.birthdate | date}}
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>
