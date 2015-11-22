@@ -4,14 +4,14 @@
     <person-form-general></person-form-general>
   </segment-container>
 
-  <segment-container title="Accounts" array="input.accounts">
+  <segment-container title="Accounts" onadd="addAccount">
       
       <person-form-account
         account="account"
         class="four fields"
         ng-repeat="account in input.accounts"
         actions="true"
-        onremove="remove(account)">
+        onremove="removeAccount(account)">
       </person-form-account>
 
   </segment-container>

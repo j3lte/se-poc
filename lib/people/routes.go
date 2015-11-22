@@ -12,7 +12,8 @@ func init() {
 
 	http.HandleFunc("/api/people", RouteGet)
   http.HandleFunc("/api/people/add", RouteAdd)
-	http.HandleFunc("/api/people/save", RouteSave)
+  http.HandleFunc("/api/people/save", RouteSave)
+	http.HandleFunc("/api/people/new", RouteNew)
 
 }
 
@@ -59,6 +60,7 @@ func RouteGet(res http.ResponseWriter, req *http.Request) {
   res.Write(data)
 }
 
+// Handles the save request emitted when creating or updating a person
 func RouteSave(res http.ResponseWriter, req *http.Request) {
 
   p := GetNewPerson()
@@ -80,7 +82,16 @@ func RouteSave(res http.ResponseWriter, req *http.Request) {
 
 }
 
+// Outputs a blank person, used to set up the structure in Angular
+func RouteNew(res http.ResponseWriter, req *http.Request) {
+  p := GetNewPerson()
+  data, err := json.Marshal(p)
 
-func RouteGetOne(_ http.ResponseWriter, req *http.Request) {
-  log.Printf("Got request: %s", req.URL.Query().Get("person"))
+  if err != nil {
+    log.Panic("Could not output a blank canvas for the person object")
+    panic(err)
+  }
+
+  res.Header().Set("Content-Type", "application/json")
+  res.Write(data)
 }

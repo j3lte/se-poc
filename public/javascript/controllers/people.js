@@ -16,13 +16,25 @@ angular
 
 .controller('PeopleAddCtrl', function($scope, People, $window) {
 
-  $scope.input = {}
+  People.new()
+  .success(function(person){
+    console.debug(person)
+    $scope.input = person
+  })
 
   $scope.formSubmit = function() {
     People.add($scope.input)
     .then(function(){
       $window.location('#/people/')
     })
+  }
+
+  $scope.removeAccount = function(account) {
+    $scope.input.accounts.splice($scope.input.accounts.indexOf(account), 1)
+  }
+
+  $scope.addAccount = function() {
+    $scope.input.accounts.push({})
   }
 
 })
@@ -34,6 +46,14 @@ angular
   .success(function(data){
     $scope.input = data
   })
+
+  $scope.removeAccount = function(account) {
+    $scope.input.accounts.splice($scope.input.accounts.indexOf(account), 1)
+  }
+
+  $scope.addAccount = function() {
+    $scope.input.accounts.push({})
+  }
 
   $scope.formSubmit = function() {
     People.save($scope.input)

@@ -13,7 +13,7 @@ type Person struct {
   Id                bson.ObjectId `json:"_id" bson:"_id"`
   FirstName         string        `json:"firstname" bson:"firstname"`
   LastName          string        `json:"lastname" bson:"lastname"`
-  BirthDate         int           `json:"birthdate" bson:"birthdate"`
+  BirthDate         string        `json:"birthdate" bson:"birthdate"`
   Addresses         []Address     `json:"addresses" bson:"addresses"`
   Accounts          []Account     `json:"accounts" bson:"accounts"`
   PhoneNumbers      []PhoneNumber `json:"phonenumbers" bson:"phonenumbers"`

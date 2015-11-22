@@ -9,12 +9,12 @@ angular
     transclude: true,
     scope: {
     	title: '@',
-    	array: '='
+    	onadd: '='
     },
     controller: function($scope) {
-    	$scope.add = function() {
-    		$scope.array.push({})
-    	}
+        if($scope.onadd) {
+            $scope.showAdd = true
+        }
     }
   }
 
