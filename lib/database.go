@@ -6,6 +6,7 @@ import (
 )
 
 var databaseHandle *mgo.Database = nil
+var databaseSession *mgo.Session = nil
 
 func GetDatabaseHandle()(*mgo.Database) {
 
@@ -17,11 +18,16 @@ func GetDatabaseHandle()(*mgo.Database) {
       log.Fatal("Could not open database connection!")
       panic(err)
     }
-    defer session.Close()
 
-    databaseHandle = session.DB("sepoc")
+    databaseSession = session
 
+    databaseHandle = databaseSession.DB("sepoc")
   }
 
   return databaseHandle
+}
+
+func CloseDatabaseHandle() {
+  log.Printf("Closing database connection")
+  databaseSession.Close()
 }

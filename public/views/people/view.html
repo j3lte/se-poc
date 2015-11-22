@@ -1,0 +1,88 @@
+<h2>{{person.firstname}} {{person.lastname}}</h2>
+
+<hr>
+<div class="ui grid">
+
+  <div class="four wide column">
+
+    <h4>General</h4>
+
+    <table border="0" class="ui table inverted">
+      <tbody>
+
+        <tr>
+          <td>First name</td>
+          <td>{{person.firstname}}</td>
+        </tr>
+
+        <tr>
+          <td>Last name</td>
+          <td>{{person.lastname}}</td>
+        </tr>
+
+        <tr>
+          <td>Email</td>
+          <td>{{person.email}}</td>
+        </tr>
+
+        <tr ng-repeat="number in person.phonenumbers">
+          <td>Phone #{{$index}}</td>
+          <td>{{number}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="six wide column">
+
+    <h4>Accounts and profiles</h4>
+    <table border="0" class="ui table inverted">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Link</th>
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr ng-repeat="account in person.accounts">
+          <td>{{account.username}}</td>
+          <td>{{account.password}}</td>
+          <td>{{account.link}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="six wide column">
+
+    <h4>Addresses</h4>
+    <table border="0" class="ui table inverted">
+      <thead>
+        <tr>
+          <th>Streetname</th>
+          <th>Housenumber</th>
+          <th>Postal</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr ng-repeat="address in person.addresses">
+          <td>{{address.streetname}}</td>
+          <td>{{address.housenumber}}</td>
+          <td>{{address.postal}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

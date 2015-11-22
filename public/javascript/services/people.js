@@ -1,23 +1,21 @@
 angular.module('app.services.people', [])
 
-.service('People', function() {
-  var people = [
-    {
-      firstname: 'Vincent',
-      lastname: 'Swarte',
-      birthdate: new Date(1995, 11, 28)
-    },
-    {
-      firstname: 'Gaia',
-      lastname: 'van Basten',
-      birthdate: new Date(1993, 8, 3)
-    }
-  ];
+.service('People', function($http) {
+
 
   return {
+
     all: function(){
-      return people;
-    }
+      return $http.get('/api/people');
+    },
+
+    get: function(id) {
+      return $http.get('/api/people?person='+id);
+    },
+
+    add: function(data) {
+      return $http.post('/api/people/add', data)
+    },
 
   }
 

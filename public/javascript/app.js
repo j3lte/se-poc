@@ -6,7 +6,10 @@ angular
   'app.controllers.people',
 
   /* Services */
-  'app.services.people'
+  'app.services.people',
+
+  /* Directives */
+  'app.directives.person-form-general'
 ])
 
 
@@ -19,12 +22,12 @@ angular
     controller: 'PeopleMainListCtrl'
   })
   .when('/people/new', {
-    templateUrl: 'views/people/add.html',
+    templateUrl: 'views/people/form.html',
     controller: 'PeopleAddCtrl'
   })
   .when('/people/:id/view', {
-    templateUrl: 'views/people/view.html',
-    // controller: 'PeopleViewCtrl'
+    templateUrl: 'views/people/form.html',
+    controller: 'PeopleViewCtrl'
   })
 
   .otherwise('/people')

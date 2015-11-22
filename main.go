@@ -4,8 +4,10 @@ import (
 	"net/http"
 	"log"
 	"github.com/BetaBugish/se-poc/lib"
-	"github.com/BetaBugish/se-poc/lib/people"
+	_ "github.com/BetaBugish/se-poc/lib/people"
 )
+
+var port string = ":1234"
 
 func main() {
 
@@ -15,9 +17,9 @@ func main() {
 
 	/* Routing */
 	http.Handle("/", http.FileServer(http.Dir("public/")))
-	
-	log.Print("Starting webserver on port :666");
-	err := http.ListenAndServe(":666", nil)
+
+	log.Printf("Starting webserver on port %s", port);
+	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal("Error listening: ", err)
 	}

@@ -3,28 +3,25 @@
   <thead>
 
     <tr>
-      <th colspan="2">
+      <th>Name</th>
+      <th>
+        Email
         <a href="#/people/new" class="ui button right floated">Create new</a>
       </th>
-    </tr>
-
-    <tr>
-      <th>Name</th>
-      <th>Birthdate</th>
     </tr>
 
   </thead>
 
   <tbody>
 
-    <tr ng-repeat="person in people">
+    <tr ng-repeat="person in people" ng-click="OpenPerson(person._id)">
 
       <td>
         {{person.firstname}} {{person.lastname}}
       </td>
 
       <td>
-        {{person.birthdate | date}}
+        {{person.email}}
       </td>
 
     </tr>
