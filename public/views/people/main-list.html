@@ -3,7 +3,8 @@
   <thead>
 
     <tr>
-      <th>Name</th>
+      <th>First name</th>
+      <th>Last name</th>
       <th>
         Birthdate
         <a href="#/people/new" class="ui button right floated">Create new</a>
@@ -17,7 +18,11 @@
     <tr ng-repeat="person in people" ng-click="OpenPerson(person._id)">
 
       <td>
-        {{person.firstname}} {{person.lastname}}
+        {{person.firstname}}
+      </td>
+
+      <td>
+        {{person.lastname}}
       </td>
 
       <td>

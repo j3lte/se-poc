@@ -37,6 +37,14 @@ angular
     $scope.input.accounts.push({})
   }
 
+  $scope.removeAddress = function(address) {
+    $scope.input.addresses.splice($scope.input.addresses.indexOf(address), 1)
+  }
+
+  $scope.addAddress = function() {
+    $scope.input.addresses.push({})
+  }
+
 })
 
 
@@ -55,11 +63,22 @@ angular
     $scope.input.accounts.push({})
   }
 
+  $scope.removeAddress = function(address) {
+    $scope.input.addresses.splice($scope.input.addresses.indexOf(address), 1)
+  }
+
+  $scope.addAddress = function() {
+    $scope.input.addresses.push({})
+  }
+
+
   $scope.formSubmit = function() {
+
     People.save($scope.input)
     .then(function(){
       console.debug('Done saving');
     })
+
   }
 
 })

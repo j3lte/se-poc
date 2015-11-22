@@ -11,6 +11,7 @@ angular
   /* Directives */
   'app.directives.person-form-general',
   'app.directives.person-form-account',
+  'app.directives.person-form-address',
   'app.directives.segment'
 ])
 

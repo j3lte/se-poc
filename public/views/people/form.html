@@ -16,6 +16,18 @@
 
   </segment-container>
 
+  <segment-container title="Addresses" onadd="addAddress">
+      
+      <person-form-address
+        address="address"
+        class="four fields"
+        ng-repeat="address in input.addresses"
+        actions="true"
+        onremove="removeAddress(address)">
+      </person-form-address>
+
+  </segment-container>
+
 
   <button type="submit" class="ui button" tabindex="0">Save</button>
   <a href="#/people" class="ui button red">Cancel<a>
