@@ -16,8 +16,7 @@ func main() {
 
     p.FirstName = fake.FirstName()
     p.LastName = fake.LastName()
-    p.Email = fake.EmailAddress()
-
+    
     // Fake accounts
     for j := 0; j < 3; j++ {
       a := people.GetNewAccount()
@@ -39,11 +38,6 @@ func main() {
       a.Postal = fake.Zip()
 
       p.Addresses = append(p.Addresses, *a)
-    }
-
-    // Fake phone numbers
-    for j := 0; j < 3; j++ {
-      p.PhoneNumbers = append(p.PhoneNumbers, fake.Phone(), fake.Phone(), fake.Phone())
     }
 
     people.SavePerson(p)

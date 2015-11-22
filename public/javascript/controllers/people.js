@@ -35,4 +35,11 @@ angular
     $scope.input = data
   })
 
+  $scope.formSubmit = function() {
+    People.save($scope.input)
+    .then(function(){
+      console.debug('Done saving');
+    })
+  }
+
 })

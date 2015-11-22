@@ -66,13 +66,25 @@ func getCollection() (*mgo.Collection) {
 func SavePerson(p *Person) {
   c := getCollection()
 
+  log.Printf("Saving person: %s", p.Id.Hex())
+
+  log.Printf("Person has valid objectid: %s", bson.IsObjectIdHex(p.Id.Hex()))
+
   // Does the object exist?
-  if !bson.IsObjectIdHex(string(p.Id)) {
+  if !bson.IsObjectIdHex(p.Id.Hex()) {
     p.Id = bson.NewObjectId()
     err := c.Insert(p)
 
+    log.Printf("Inserted person: %v", p.Id)
     if err != nil {
       log.Panic("Error whilst inserting person: %v", err)
+    }
+  } else {
+    err := c.UpdateId(p.Id, p)
+
+    log.Printf("Saved person: %v", p.Id)
+    if err != nil {
+      log.Panic("Error whilst updating person: %v", err)
     }
   }
 }

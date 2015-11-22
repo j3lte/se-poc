@@ -1,21 +1,20 @@
-<form ng-submit="formSbmit()" class="ui form">
+<form ng-submit="formSubmit()" class="ui form">
 
-  <person-form-general></person-form-general>
+  <segment-container title="General">
+    <person-form-general></person-form-general>
+  </segment-container>
 
-  <h3 class="ui top attached header inverted ng-binding ng-scope">
-    Onderdelen
-  </h3>
+  <segment-container title="Accounts" array="input.accounts">
+      
+      <person-form-account
+        account="account"
+        class="four fields"
+        ng-repeat="account in input.accounts"
+        actions="true"
+        onremove="remove(account)">
+      </person-form-account>
 
-  <div class="ui attached segment" ng-transclude="">
-
-  	<div class="ui grid ng-scope">
-      Come on
-  	</div>
-
-  </div>
-
-
-  <hr>
+  </segment-container>
 
 
   <button type="submit" class="ui button" tabindex="0">Save</button>

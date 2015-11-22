@@ -7,7 +7,7 @@ import (
 	_ "github.com/BetaBugish/se-poc/lib/people"
 )
 
-var port string = ":1234"
+var port string = ":1235"
 
 func main() {
 

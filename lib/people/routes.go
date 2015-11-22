@@ -11,7 +11,8 @@ func init() {
   log.Printf("Registering the people routes")
 
 	http.HandleFunc("/api/people", RouteGet)
-	http.HandleFunc("/api/people/add", RouteAdd)
+  http.HandleFunc("/api/people/add", RouteAdd)
+	http.HandleFunc("/api/people/save", RouteSave)
 
 }
 
@@ -57,6 +58,28 @@ func RouteGet(res http.ResponseWriter, req *http.Request) {
   res.Header().Set("Content-Type", "application/json")
   res.Write(data)
 }
+
+func RouteSave(res http.ResponseWriter, req *http.Request) {
+
+  p := GetNewPerson()
+
+  // Decode the JSON against the Person struct
+  decoder := json.NewDecoder(req.Body)
+  err := decoder.Decode(&p)
+  if err != nil {
+    log.Panic("Could not properly decode request \n body: %v", req.Body)
+  }
+
+  // Save the actual data
+  SavePerson(p)
+
+  log.Printf("Updating person: %s", p.FirstName + " " + p.LastName)
+
+  res.Header().Set("Content-Type", "application/json")
+  res.Write([]byte("\"success\""))
+
+}
+
 
 func RouteGetOne(_ http.ResponseWriter, req *http.Request) {
   log.Printf("Got request: %s", req.URL.Query().Get("person"))

@@ -9,7 +9,9 @@ angular
   'app.services.people',
 
   /* Directives */
-  'app.directives.person-form-general'
+  'app.directives.person-form-general',
+  'app.directives.person-form-account',
+  'app.directives.segment'
 ])
 
 

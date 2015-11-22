@@ -1,0 +1,21 @@
+
+
+<div class="field">
+  <label for="">Username</label>
+  <input type="text" ng-model="account.username">
+</div>
+
+<div class="field">
+  <label for="">Password</label>
+  <input type="text" ng-model="account.password">
+</div>
+
+<div class="field">
+  <label for="">Link</label>
+  <input type="text" ng-model="account.link">
+</div>
+
+<div class="field" ng-if="actions">
+  <label for="">Actions</label>
+  <button type="button" class="ui button orange" ng-click="onremove()">Remove</button>
+</div>
