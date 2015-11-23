@@ -1,0 +1,23 @@
+
+
+<div class="field">
+  <label for="">Type</label>
+  <select ng-model="relation.subjecttype">
+    <option value="people" selected>People</option>
+  </select>
+</div>
+
+<div class="field">
+  <label for="">Subject</label>
+  <input-relation ng-model="relation.subject"></input-relation>
+</div>
+
+<div class="field">
+  <label for="">Description</label>
+  <input type="text" ng-model="relation.description">
+</div>
+
+<div class="field" ng-if="actions">
+  <label for="">Actions</label>
+  <button type="button" class="ui button orange" ng-click="onremove(relation)">Remove</button>
+</div>

@@ -45,6 +45,15 @@ angular
     $scope.input.addresses.push({})
   }
 
+  $scope.removeRelation = function(relation) {
+    $scope.input.relations.splice($scope.input.relations.indexOf(relation), 1)
+  }
+
+  $scope.addRelation = function() {
+    $scope.input.relations.push({})
+  }
+
+
 })
 
 
@@ -71,6 +80,25 @@ angular
     $scope.input.addresses.push({})
   }
 
+  $scope.removeRelation = function(relation) {
+    $scope.input.relations.splice($scope.input.relations.indexOf(relation), 1)
+  }
+
+  $scope.addRelation = function() {
+    $scope.input.relations.push({})
+  }
+
+  $scope.showNetworkMap = function() {
+    People.generateNetworkMap($scope.input._id)
+    .success(function(data){
+      $scope.map = data
+      
+      $('.ui.modal')
+        .modal('show')
+      ;
+    })
+
+  }
 
   $scope.formSubmit = function() {
 

@@ -12,6 +12,9 @@ angular
   'app.directives.person-form-general',
   'app.directives.person-form-account',
   'app.directives.person-form-address',
+  'app.directives.form-relation',
+  'app.directives.input-relation',
+  'app.directives.network-viewer',
   'app.directives.segment'
 ])
 

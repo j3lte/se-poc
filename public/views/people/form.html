@@ -28,8 +28,40 @@
 
   </segment-container>
 
+  <segment-container title="Relations" onadd="addRelation">
+      
+      <form-relation
+        relation="relation"
+        class="four fields"
+        ng-repeat="relation in input.relations"
+        actions="true"
+        onremove="removeRelation(relation)">
+      </form-relation>
+
+      <div class="field">
+        <button
+          type="button"
+          class="ui button"
+          ng-click="showNetworkMap()">
+          Show network map
+        </button>
+
+      </div>
+
+  </segment-container>
 
   <button type="submit" class="ui button" tabindex="0">Save</button>
   <a href="#/people" class="ui button red">Cancel<a>
 
 </form>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Network map
+  </div>
+  <div class="content" style="min-height: 500px;">
+    <network-viewer nodes="map.nodes" edges="map.edges"></network-viewer>
+  </div>
+
+</div>
