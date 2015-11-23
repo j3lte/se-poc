@@ -16,7 +16,6 @@ func init() {
   http.HandleFunc("/api/people/save", RouteSave)
   http.HandleFunc("/api/people/new", RouteNew)
 	http.HandleFunc("/api/people/map", RouteMap)
-
 }
 
 func RouteAdd(res http.ResponseWriter, req *http.Request) {
@@ -37,7 +36,6 @@ func RouteAdd(res http.ResponseWriter, req *http.Request) {
 
   res.Header().Set("Content-Type", "application/json")
   res.Write([]byte("\"success\""))
-
 }
 
 func RouteGet(res http.ResponseWriter, req *http.Request) {
@@ -81,7 +79,6 @@ func RouteSave(res http.ResponseWriter, req *http.Request) {
 
   res.Header().Set("Content-Type", "application/json")
   res.Write([]byte("\"success\""))
-
 }
 
 // Outputs a blank person, used to set up the structure in Angular
@@ -105,7 +102,7 @@ func RouteMap(res http.ResponseWriter, req *http.Request) {
   var networkMap *lib.NetworkMap
 
   result := GetPerson(personID)
-  counter, networkMap = result.ToNetworkMap(counter, make(map[string]bool))
+  counter, networkMap = result.ToNetworkMap(counter, make(map[string]int))
 
   data, err := json.Marshal(networkMap)
 
@@ -116,6 +113,5 @@ func RouteMap(res http.ResponseWriter, req *http.Request) {
 
   res.Header().Set("Content-Type", "application/json")
   res.Write(data)
-
 }
 
