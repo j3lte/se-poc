@@ -102,52 +102,10 @@ func RouteNew(res http.ResponseWriter, req *http.Request) {
 func RouteMap(res http.ResponseWriter, req *http.Request) {
   var personID  string    = req.URL.Query().Get("person")
   var counter int = 0
-  networkMap := lib.GetNewNetworkMap()
+  var networkMap *lib.NetworkMap
 
   result := GetPerson(personID)
-  networkMap.Nodes = append(networkMap.Nodes, *result.ToNode(counter, "people"))
-  baseId := counter
-  counter++
-
-  // Loop through relations
-  for _,element := range result.Relations {
-
-    // New relationship line between baseId to subject
-    edge := lib.GetNewEdge()
-    edge.From = baseId
-    edge.To = counter
-    networkMap.Edges = append(networkMap.Edges, *edge)
-
-    // Add person to node list
-    result := GetPerson(element.Subject.Hex())
-    networkMap.Nodes = append(networkMap.Nodes, *result.ToNode(counter, element.SubjectType))
-    resultId := counter
-    counter++
-
-    // Add the person's addresses
-    for _,address := range result.Addresses {
-
-      edge := lib.GetNewEdge()
-      edge.From = resultId
-      edge.To = counter
-      networkMap.Edges = append(networkMap.Edges, *edge)
-
-      networkMap.Nodes = append(networkMap.Nodes, *address.ToNode(counter))
-      counter++
-    }
-
-    // Add the person's accounts
-    for _,account := range result.Accounts {
-
-      edge := lib.GetNewEdge()
-      edge.From = resultId
-      edge.To = counter
-      networkMap.Edges = append(networkMap.Edges, *edge)
-
-      networkMap.Nodes = append(networkMap.Nodes, *account.ToNode(counter))
-      counter++
-    }
-  }
+  counter, networkMap = result.ToNetworkMap(counter, make(map[string]bool))
 
   data, err := json.Marshal(networkMap)
 

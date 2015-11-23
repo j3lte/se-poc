@@ -40,7 +40,7 @@ angular
                     width: 2
                 },
                 groups: {
-                    people: {
+                    person: {
                         shape: 'icon',
                         icon: {
                             face: 'Icons',

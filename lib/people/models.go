@@ -47,15 +47,72 @@ type Relation struct {
 }
 
 // Turns the person into a node item for vis
-func (p *Person)ToNode(id int, group string)(*lib.Node) {
+func (p *Person)ToNode(id int)(*lib.Node) {
 
     n := lib.GetNewNode()
 
     n.Label = p.FirstName + " " + p.LastName
     n.Id = id
-    n.Group = group
+    n.Group = "person"
 
     return n
+}
+
+// Turns the person into a network map
+func (p *Person)ToNetworkMap(counter int, checklist map[string]bool)(int, *lib.NetworkMap) {
+  networkMap := lib.GetNewNetworkMap()
+
+  networkMap.Nodes = append(networkMap.Nodes, *p.ToNode(counter))
+  personId := counter
+  counter++
+
+  // Add the person's addresses
+  for _,address := range p.Addresses {
+
+    edge := lib.GetNewEdge()
+    edge.From = personId
+    edge.To = counter
+    networkMap.Edges = append(networkMap.Edges, *edge)
+
+    networkMap.Nodes = append(networkMap.Nodes, *address.ToNode(counter))
+    counter++
+  }
+
+  // Add the person's accounts
+  for _,account := range p.Accounts {
+
+    edge := lib.GetNewEdge()
+    edge.From = personId
+    edge.To = counter
+    networkMap.Edges = append(networkMap.Edges, *edge)
+
+    networkMap.Nodes = append(networkMap.Nodes, *account.ToNode(counter))
+    counter++
+  }
+
+  // Add the person's relations
+  for _,relation := range p.Relations {
+    var relationNetworkMap *lib.NetworkMap
+
+    edge := lib.GetNewEdge()
+    edge.From = personId
+    edge.To = counter
+    networkMap.Edges = append(networkMap.Edges, *edge)
+
+    // Check for duplicates
+    if !checklist[relation.Subject.Hex()] {
+      checklist[relation.Subject.Hex()] = true
+      p := GetPerson(relation.Subject.Hex())
+
+      counter, relationNetworkMap = p.ToNetworkMap(counter, checklist)
+      networkMap.Absorb(relationNetworkMap)
+    }
+
+    counter++
+  }
+
+
+  return counter, networkMap
 }
 
 // Turns the account into a node item for vis
